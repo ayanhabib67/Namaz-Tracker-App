@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Namaz Timing</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      width: 90%;
+      max-width: 500px;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      color: #00ffd5;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+
+    .namaz-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .namaz-card {
+      background: #1c1c1c;
+      padding: 15px 20px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .namaz-name {
+      font-size: 1rem;
+      color: #00ffd5;
+      font-weight: bold;
+    }
+
+    .namaz-time {
+      font-size: 1rem;
+      color: #ffffff;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.4rem;
+      }
+      .namaz-card {
+        padding: 12px;
+      }
+      .namaz-name, .namaz-time {
+        font-size: 0.9rem;
+      }
+    }
+
+
+    #city {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #014421, #026440);
+  color: #fff;
+  border: 2px solid #ffd700;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.3s;
+  text-align: center;
+}
+
+#city:hover {
+  background: linear-gradient(135deg, #026440, #038052);
+}
+
+#city option {
+  background: #014421;
+  color: #fff;
+  padding: 10px;
+}
+.check-btn {
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #ffd700, #d4af37);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255,215,0,0.4);
+  transition: 0.3s ease-in-out;
+}
+
+.check-btn:hover {
+  background: linear-gradient(135deg, #d4af37, #ffd700);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(255,215,0,0.6);
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🕌 Namaz Timing</h1>
+    <p>Today's Prayer Times</p>
+
+
+    <select id="city">
+        <option value="">🌆 Select City</option>
+        <option>Karachi</option>
+        <option>Lahore</option>
+        <option>Islamabad</option>
+        <option>Rawalpindi</option>
+        <option>Faisalabad</option>
+        <option>Multan</option>
+        <option>Peshawar</option>
+        <option>Quetta</option>
+        <option>Hyderabad</option>
+        <option>Sialkot</option>
+        <option>Gujranwala</option>
+        <option>Sukkur</option>
+        <option>Bahawalpur</option>
+        <option>Mardan</option>
+        <option>Abbottabad</option>
+        <option>Mirpur</option>
+        <option>Larkana</option>
+        <option>Jhelum</option>
+        <option>Gwadar</option>
+      </select>
+      
+      
+
+
+    <div class="namaz-list" id="namazTiming">
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script type="module" src="./NamazTiming.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

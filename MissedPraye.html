@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Missed Prayers</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #111;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+      z-index: 999;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #00ffd5;
+      color: #000;
+    }
+
+    .hamburger {
+      display: none;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      cursor: pointer;
+      font-size: 1.8rem;
+    }
+
+  
+    .main {
+      flex: 1;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #00ffd5;
+    }
+
+    .prayer-box {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .hamburger {
+        display: block;
+      }
+
+    label {
+      font-size: 1rem;
+    }
+
+    input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      margin: 15px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      background: #ffffff;
+      color: #000;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #1f1f1f;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .checkbox-group input {
+      transform: scale(1.2);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #00ffd5;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #00bfa6;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px;
+        height: 100%;
+        transform: translateX(0);
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      body {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .main {
+        width: 100%;
+        padding: 60px 20px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+ 
+  <label for="menuToggle" class="hamburger" onclick="toggleSidebar()">☰</label>
+  
+  <div class="sidebar" id="sidebar">
+    <a href="./deshboard.html">🏠 Dashboard</a>
+    <a href="./namazHistory.html">📜 Namaz History</a>
+    <a href="#" class="active">📆 Missed Prayers</a>
+    <a href="./NamazTiming.html">🕌 Namaz Timing</a>
+    <a href="#" id="logout">🚪 Logout</a>
+  </div>
+
+  <div class="main">
+    <h1>🕌 Missed Prayers Checker</h1>
+
+    <div class="prayer-box">
+      <label for="missedDate">📅 Select Date</label>
+      <input type="date" id="missedDate" />
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="Fajr"> Fajr</label>
+        <label><input type="checkbox" id="Dhuhr"> Dhuhr</label>
+        <label><input type="checkbox" id="Asr"> Asr</label>
+        <label><input type="checkbox" id="Maghrib"> Maghrib</label>
+        <label><input type="checkbox" id="Isha"> Isha</label>
+      </div>
+
+      <button id="addNamaz">Add Missed Namaz</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="MissedPraye.js"></script>
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>

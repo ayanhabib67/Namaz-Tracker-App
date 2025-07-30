@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Namaz History</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    
+    .sidebar {
+      width: 220px;
+      background-color: #111;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #00ffd5;
+      color: #000;
+    }
+
+  
+    .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      align-self: flex-end;
+      cursor: pointer;
+      margin-bottom: 10px;
+      display: none; 
+    }
+
+    
+    .main {
+      flex: 1;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #00ffd5;
+    }
+
+    .history-container {
+      width: 90%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .history-date {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #00eaff;
+      margin-top: 20px;
+      border-bottom: 1px solid #555;
+      padding-bottom: 5px;
+    }
+
+    .namaz-item {
+      padding: 8px 12px;
+      margin: 5px 0;
+      background: #1c1c1c;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .namaz-item span {
+      font-size: 1rem;
+    }
+
+    .offered {
+      color: #00ff84;
+      font-weight: bold;
+    }
+
+    .hamburger {
+      display: none;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      cursor: pointer;
+      font-size: 1.8rem;
+    }
+
+    #menuToggle {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        transform: translateX(-100%);
+        z-index: 1000;
+      }
+
+      #menuToggle:checked + .sidebar {
+        transform: translateX(0);
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .main {
+        margin-top: 60px;
+        padding: 20px;
+        align-items: center;
+      }
+
+      .close-btn {
+        display: block; 
+      }
+    }
+    #MissedPraye {
+  padding: 10px 20px;
+  background-color: #00ffd5;
+  color: #000;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #00ffd5, 0 0 20px #00ffd5;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+#MissedPraye:hover {
+  background-color: #00c9aa;
+  box-shadow: 0 0 15px #00ffd5, 0 0 30px #00ffd5;
+  transform: scale(1.05);
+}
+
+  </style>
+</head>
+<body>
+
+  <label for="menuToggle" class="hamburger">☰</label>
+  <input type="checkbox" id="menuToggle" />
+
+  <div class="sidebar">
+    <button class="close-btn" onclick="document.getElementById('menuToggle').checked = false">❌</button>
+    <a href="#" class="active">📜 Namaz History</a>
+    <a href="./deshboard.html">🏠 Dashboard</a>
+    <a href="./MissedPraye.html">📆 Missed Prayers</a>
+    <a href="./NamazTiming.html">🕌 Namaz Timing</a>
+    <a href="#" id="logout">🚪 Logout</a>
+  </div>
+
+  <div class="main">
+    <h1>🕌 Namaz History</h1>
+    <button id="MissedPraye">Missed Praye</button>
+    <div class="history-container" id="historyContainer"></div>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="./namazHistory.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Namaz Tracker - Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #14222e;
+      padding: 30px 20px;
+      box-shadow: 4px 0 12px rgba(0, 0, 0, 0.4);
+      transition: left 0.3s ease;
+      position: relative;
+    }
+
+    .sidebar h2 {
+      color: #00ffcc;
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 24px;
+      border-bottom: 2px solid #00ffcc;
+      padding-bottom: 10px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transition: 0.3s ease;
+      font-weight: 500;
+    }
+
+    .sidebar a:hover {
+      background-color: #00ffcc;
+      color: #000;
+    }
+
+    .close-btn {
+      display: none;
+      font-size: 30px;
+      background: none;
+      color: #00ffcc;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index: 1100;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 40px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      color: #00ffcc;
+      font-size: 28px;
+    }
+
+    .user-info {
+      font-size: 14px;
+      background-color: #2e2e2e;
+      padding: 10px 15px;
+      border-radius: 8px;
+    }
+
+    #date {
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #1e2b38;
+      padding: 25px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 255, 204, 0.3);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #00ffcc;
+      font-size: 20px;
+    }
+
+    .card p {
+      font-size: 18px;
+      color: #ffffffb0;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 26px;
+      background: none;
+      color: #00ffcc;
+      border: none;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .menu-toggle {
+        display: block;
+        margin-bottom: 15px;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px;
+        height: 100%;
+        z-index: 1000;
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .main-content {
+        width: 100%;
+        padding: 20px;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .close-btn {
+        display: block;
+      }
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      background-color: #0e1a25;
+      padding: 10px 15px;
+      border-radius: 10px;
+      color: #00ffcc;
+      box-shadow: 0 4px 10px rgba(0, 255, 204, 0.1);
+      word-break: break-all;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <button id="close-sidebar" class="close-btn">×</button>
+    <h2>🕌 Namaz Tracker</h2>
+    <a href="#">📊 Dashboard</a>
+    <a href="./MissedPraye.html">🕰️ Missed Prayers</a>
+    <a href="./namazHistory.html">📜 Namaz History</a>
+    <a href="./NamazTiming.html">🕌 Namaz Timing</a>
+    <a href="#" id="logout">🚪 Logout</a>
+  </div>
+
+  <div class="main-content">
+    <div class="header">
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+      <h1>Welcome, Namaz Tracker</h1>
+      <div class="user-info" id="user-Email"></div>
+    </div>
+
+    <div id="date">Date: </div>
+
+    <h2 style="margin-bottom: 20px;">Today's Namaz Status</h2>
+
+    <div class="card-container">
+      <div class="card" id="namaz">
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script type="module" src="deshboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
